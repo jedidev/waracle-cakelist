@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
+import com.tsheal.cakelist.MyApplication
 import com.tsheal.cakelist.R
 import com.tsheal.cakelist.databinding.ActivityMainBinding
 import dagger.android.AndroidInjection
+import java.lang.ref.WeakReference
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
+        MyApplication.currentContext = WeakReference(this)
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.viewModel = viewModel
     }

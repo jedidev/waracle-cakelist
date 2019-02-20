@@ -20,6 +20,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:items="@{viewModel.cakes}"
+                app:itemBinding="@{viewModel.itemBinding}"
                 android:visibility="@{viewModel.atLeastOneCake ? View.VISIBLE : View.GONE}"/>
 
         <TextView
