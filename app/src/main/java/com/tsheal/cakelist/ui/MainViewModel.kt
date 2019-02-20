@@ -6,10 +6,11 @@ import com.tsheal.cakelist.mvvm.BaseViewModel
 import com.tsheal.cakelist.service.CakeService
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel: BaseViewModel() {
-
-    private val cakeService = CakeService()
+class MainViewModel @Inject constructor(
+    private val cakeService: CakeService
+): BaseViewModel() {
 
     init {
         GlobalScope.launch {
