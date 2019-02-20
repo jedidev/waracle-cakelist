@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Cake List</string>
+    <string name="no_cakes">There are currently no cakes to display</string>
 </resources>
