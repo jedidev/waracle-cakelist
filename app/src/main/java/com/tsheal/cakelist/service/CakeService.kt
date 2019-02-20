@@ -15,8 +15,11 @@ class CakeService @Inject constructor(
     fun getCakesAsync(): Deferred<List<Cake>> {
         return GlobalScope.async {
             val cakes = cakeApi.getCakesAsync().await()
+            val distinctCakes = cakes.distinctBy { it.title }
+            val sortedCakes = distinctCakes.sortedBy { it.title }
+
             Log.d("", "${cakes.count()}")
-            cakes
+            sortedCakes
         }
     }
 }
