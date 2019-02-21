@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModel: MainViewModel
 
+    //TODO: Replace imported generic RecyclerView Binding Adapter with own coded implementation
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)

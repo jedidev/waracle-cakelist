@@ -1,6 +1,6 @@
 package com.tsheal.cakelist.service
 
-import android.util.Log
+import com.tsheal.cakelist.interfaces.ICakeService
 import com.tsheal.cakelist.api.CakeApi
 import com.tsheal.cakelist.model.Cake
 import kotlinx.coroutines.Deferred
@@ -8,17 +8,15 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import javax.inject.Inject
 
-class CakeService @Inject constructor(
+open class CakeService @Inject constructor(
     private val cakeApi: CakeApi
-) {
+): ICakeService {
 
-    fun getCakesAsync(): Deferred<List<Cake>> {
+    override fun getCakesAsync(): Deferred<List<Cake>> {
         return GlobalScope.async {
             val cakes = cakeApi.getCakesAsync().await()
             val distinctCakes = cakes.distinctBy { it.title }
             val sortedCakes = distinctCakes.sortedBy { it.title }
-
-            Log.d("", "${cakes.count()}")
             sortedCakes
         }
     }

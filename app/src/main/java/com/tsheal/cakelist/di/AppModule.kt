@@ -4,8 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.tsheal.cakelist.interfaces.ICakeService
 import com.tsheal.cakelist.api.CakeApi
+import com.tsheal.cakelist.interfaces.ICakeItemListener
+import com.tsheal.cakelist.interfaces.IDialogService
 import com.tsheal.cakelist.service.CakeService
+import com.tsheal.cakelist.service.DialogService
+import com.tsheal.cakelist.ui.CakeItemListener
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -40,4 +45,16 @@ internal class AppModule {
         val cakeApi = retrofit.create(CakeApi::class.java)
         return cakeApi
     }
+
+    @Provides
+    @AppScope
+    fun provideCakeService(cakeService: CakeService): ICakeService = cakeService
+
+    @Provides
+    @AppScope
+    fun provideDialogService(dialogService: DialogService): IDialogService = dialogService
+
+    @Provides
+    @AppScope
+    fun provideCakeItemListener(cakeItemListener: CakeItemListener): ICakeItemListener = cakeItemListener
 }
